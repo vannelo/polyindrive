@@ -1,0 +1,121 @@
+.page {
+  background-color: #f5f6f7;
+}
+.logo {
+  position: fixed;
+  top: 40px;
+  left: 40px;
+  width: 50px;
+}
+.page_home {
+  background-position: right top;
+  background-image: url("/img/bg.png");
+  background-size: 60%;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+.form_box {
+  position: fixed;
+  top: 30%;
+  left: 10%;
+  width: 400px;
+}
+.form_box .upload {
+  gap: 15px;
+  align-items: center;
+  background-color: #ffffff;
+  display: flex;
+  text-align: center;
+  cursor: pointer;
+}
+.form_box .upload svg {
+  height: 3em;
+}
+.form_box .form {
+  background-color: white;
+  padding: 40px;
+  border-radius: 40px;
+  box-shadow: 0 10px 50px 0 hsl(0deg 0% 39% / 40%);
+}
+.form_box input {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  text-align: center;
+  border-bottom: 1px solid #a8a8a8;
+}
+.form_box .checkbox {
+  text-align: center;
+  font-size: 14px;
+  color: #707070;
+  padding: 10px 0;
+}
+.form_box .checkbox input {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+}
+.form_box .btn {
+  text-align: center;
+}
+.form_box .btn button {
+  background-color: #a8a8a8;
+  border-radius: 40px;
+  border: none;
+  padding: 14px 80px;
+  font-size: 18px;
+  color: white;
+}
+
+@media (max-width: 600px) {
+  .logo {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 30px;
+  }
+  .page_home {
+    background-position: right top;
+    background-image: url("/img/bg.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    padding-top: 50%;
+  }
+  .form_box {
+    position: initial;
+    margin: auto;
+    width: 80%;
+  }
+  .form_box .upload {
+    gap: 15px;
+    align-items: center;
+    background-color: #ffffff;
+    display: flex;
+    text-align: center;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  .form_box .upload svg {
+    height: 3em;
+  }
+  .form_box .form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 40px;
+    box-shadow: 0 10px 50px 0 hsl(0deg 0% 39% / 40%);
+  }
+  .form_box input {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    text-align: center;
+    border-bottom: 1px solid #a8a8a8;
+  }
+}
