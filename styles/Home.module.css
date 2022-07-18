@@ -69,6 +69,14 @@
   font-size: 18px;
   color: white;
 }
+.form_box .btn .btn_active {
+  background-color: #489ff7;
+  transition-duration: 0.2s;
+}
+.form_box .btn .btn_active:hover {
+  background-color: #60bff9;
+  transition-duration: 0.2s;
+}
 
 @media (max-width: 600px) {
   .logo {

@@ -1,10 +1,21 @@
 import Head from "next/head";
 import Image from "next/image";
-import { Fragment } from "react";
+import { Fragment, useRef, useState } from "react";
 import styles from "../styles/Home.module.css";
-import Script from "next/script";
 
 export default function Home() {
+  const [isFormFilled, setIsFormFilled] = useState(false);
+  const nameRef = useRef();
+  const emailRef = useRef();
+
+  const onTypeHandler = () => {
+    if (nameRef.current.value && emailRef.current.value.length > 5) {
+      setIsFormFilled(true);
+    } else {
+      setIsFormFilled(false);
+    }
+  };
+
   return (
     <Fragment>
       <Head>
@@ -52,7 +63,7 @@ export default function Home() {
                 <input
                   type="hidden"
                   name="returnURL"
-                  value="https&#x3a;&#x2f;&#x2f;polyindrive.vercel.app"
+                  value="https&#x3a;&#x2f;&#x2f;polyindrive.vercel.app/gracias"
                 />
                 <div className={styles.inputs}>
                   <input
@@ -62,17 +73,13 @@ export default function Home() {
                   />
                   <input
                     type="text"
-                    id="Title"
-                    name="Title"
-                    maxLength="100"
-                    placeholder="Título de tu pieza"
-                  />
-                  <input
-                    type="text"
                     id="Last_Name"
                     name="Last Name"
                     maxLength="80"
                     placeholder="Nombre completo"
+                    required
+                    onKeyDown={onTypeHandler}
+                    ref={nameRef}
                   />
                   <input
                     type="text"
@@ -81,14 +88,25 @@ export default function Home() {
                     name="Email"
                     maxLength="100"
                     placeholder="Email"
+                    required
+                    onKeyDown={onTypeHandler}
+                    ref={emailRef}
                   />
                 </div>
                 <div className={styles.checkbox}>
-                  <input type="checkbox" id="cbox1" value="checkbox" /> Acepto
-                  términos y condiciones
+                  <input type="checkbox" id="cbox1" value="checkbox" required />{" "}
+                  Acepto términos y condiciones
                 </div>
                 <div className={styles.btn}>
-                  <button type="submit">Enviar</button>
+                  {isFormFilled ? (
+                    <button type="submit" className={styles.btn_active}>
+                      Enviar
+                    </button>
+                  ) : (
+                    <button type="submit" disabled>
+                      Enviar
+                    </button>
+                  )}
                 </div>
               </form>
             </div>
