@@ -1,10 +1,11 @@
 import Head from "next/head";
 import Image from "next/image";
-import { Fragment, useRef, useState } from "react";
+import { Fragment, useRef, useState, useEffect } from "react";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
   const [isFormFilled, setIsFormFilled] = useState(false);
+  const [isInfoActive, setIsInfoActive] = useState(false);
   const nameRef = useRef();
   const emailRef = useRef();
 
@@ -14,6 +15,13 @@ export default function Home() {
     } else {
       setIsFormFilled(false);
     }
+  };
+
+  const onInfoClickHandler = () => {
+    setIsInfoActive(true);
+  };
+  const onInfoOutsideClickHandler = () => {
+    setIsInfoActive(false);
   };
 
   return (
@@ -70,6 +78,7 @@ export default function Home() {
                     type="file"
                     name="theFile"
                     id="theFile5388361000000402001"
+                    required
                   />
                   <input
                     type="text"
@@ -111,6 +120,31 @@ export default function Home() {
               </form>
             </div>
           </div>
+          {!isInfoActive && (
+            <div className={styles.info_icon} onClick={onInfoClickHandler}>
+              ?
+            </div>
+          )}
+          {isInfoActive && (
+            <div className={styles.info_box}>
+              <div className={styles.close} onClick={onInfoOutsideClickHandler}>
+                x
+              </div>
+              <div className={styles.title}>¿Cómo funciona?</div>
+              <div className={styles.text}>
+                <p>1. Graba un sonido que te represente.</p>
+                <p>
+                  2. Subelo a Tik Tok e Instagram taggeando @indriver y
+                  @martinalapeligrosa
+                </p>
+                <p>
+                  3. Sube tu video aquí para que sea utilizado en la canción in
+                  driver Colombia.
+                </p>
+                <p>4. Espera la canción in driver y comienza a bailar.</p>
+              </div>
+            </div>
+          )}
         </div>
       </main>
     </Fragment>
