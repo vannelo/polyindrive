@@ -6,6 +6,8 @@ import styles from "../styles/Home.module.css";
 export default function Home() {
   const [isFormFilled, setIsFormFilled] = useState(false);
   const [isInfoActive, setIsInfoActive] = useState(false);
+  const [fileSet, setFileSet] = useState(null);
+  const fileRef = useRef();
   const nameRef = useRef();
   const emailRef = useRef();
 
@@ -24,6 +26,16 @@ export default function Home() {
     setIsInfoActive(false);
   };
 
+  const clickInputFile = () => {
+    fileRef.current.click();
+  };
+
+  const fileChangeHandler = () => {
+    if (fileRef.current.files[0].name) {
+      setFileSet(fileRef.current.files[0].name);
+    }
+  };
+
   return (
     <Fragment>
       <Head>
@@ -37,19 +49,22 @@ export default function Home() {
           </div>
           <div className={styles.form_box}>
             <div className={styles.form}>
-              {/* <div className={styles.upload}>
-                <svg viewBox="0 0 72 72">
-                  <path
-                    d="M36.493 72C16.118 72 0 55.883 0 36.493 0 16.118 16.118 0 36.493 0 55.882 0 72 16.118 72 36.493 72 55.882 55.883 72 36.493 72zM34 34h-9c-.553 0-1 .452-1 1.01v1.98A1 1 0 0 0 25 38h9v9c0 .553.452 1 1.01 1h1.98A1 1 0 0 0 38 47v-9h9c.553 0 1-.452 1-1.01v-1.98A1 1 0 0 0 47 34h-9v-9c0-.553-.452-1-1.01-1h-1.98A1 1 0 0 0 34 25v9z"
-                    fill="#409fff"
-                    fillRule="nonzero"
-                  ></path>
-                </svg>
-                <div className={styles.upload_text}>
-                  <h2>Subir archivos</h2>
+              {fileSet ? (
+                <div className={styles.file_set}>{fileSet}</div>
+              ) : (
+                <div className={styles.upload} onClick={clickInputFile}>
+                  <svg viewBox="0 0 72 72">
+                    <path
+                      d="M36.493 72C16.118 72 0 55.883 0 36.493 0 16.118 16.118 0 36.493 0 55.882 0 72 16.118 72 36.493 72 55.882 55.883 72 36.493 72zM34 34h-9c-.553 0-1 .452-1 1.01v1.98A1 1 0 0 0 25 38h9v9c0 .553.452 1 1.01 1h1.98A1 1 0 0 0 38 47v-9h9c.553 0 1-.452 1-1.01v-1.98A1 1 0 0 0 47 34h-9v-9c0-.553-.452-1-1.01-1h-1.98A1 1 0 0 0 34 25v9z"
+                      fill="#409fff"
+                      fillRule="nonzero"
+                    ></path>
+                  </svg>
+                  <div className={styles.upload_text}>
+                    <h2>Subir archivos</h2>
+                  </div>
                 </div>
-              </div> */}
-
+              )}
               <form
                 action="https://crm.zoho.com/crm/WebToContactForm"
                 name="WebToContacts5388361000000402001"
@@ -78,6 +93,9 @@ export default function Home() {
                     type="file"
                     name="theFile"
                     id="theFile5388361000000402001"
+                    ref={fileRef}
+                    className={styles.input_file}
+                    onChange={fileChangeHandler}
                     required
                   />
                   <input
@@ -88,6 +106,7 @@ export default function Home() {
                     placeholder="Nombre completo"
                     required
                     onKeyDown={onTypeHandler}
+                    onChange={onTypeHandler}
                     ref={nameRef}
                   />
                   <input
@@ -99,6 +118,7 @@ export default function Home() {
                     placeholder="Email"
                     required
                     onKeyDown={onTypeHandler}
+                    onChange={onTypeHandler}
                     ref={emailRef}
                   />
                 </div>
@@ -122,7 +142,14 @@ export default function Home() {
           </div>
           {!isInfoActive && (
             <div className={styles.info_icon} onClick={onInfoClickHandler}>
-              ?
+              <div className={styles.image}>
+                <Image
+                  src="/img/question-mark.png"
+                  alt="InDrive"
+                  width={94}
+                  height={159}
+                />
+              </div>
             </div>
           )}
           {isInfoActive && (
@@ -130,18 +157,13 @@ export default function Home() {
               <div className={styles.close} onClick={onInfoOutsideClickHandler}>
                 x
               </div>
-              <div className={styles.title}>¿Cómo funciona?</div>
-              <div className={styles.text}>
-                <p>1. Graba un sonido que te represente.</p>
-                <p>
-                  2. Subelo a Tik Tok e Instagram taggeando @indriver y
-                  @martinalapeligrosa
-                </p>
-                <p>
-                  3. Sube tu video aquí para que sea utilizado en la canción in
-                  driver Colombia.
-                </p>
-                <p>4. Espera la canción in driver y comienza a bailar.</p>
+              <div className={styles.title}>
+                <Image
+                  src="/img/como-funciona.jpg"
+                  alt="InDrive"
+                  width={1566}
+                  height={1814}
+                />
               </div>
             </div>
           )}

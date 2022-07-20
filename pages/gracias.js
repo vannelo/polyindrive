@@ -27,7 +27,7 @@ export default function Home() {
           <div className={styles.logo}>
             <Image src="/img/logo.png" alt="InDrive" width={105} height={99} />
           </div>
-          <div className={styles.form_box}>
+          <div className={styles.form_box_gracias}>
             <div className={styles.form}>
               <div className={styles.image}>
                 <Image
